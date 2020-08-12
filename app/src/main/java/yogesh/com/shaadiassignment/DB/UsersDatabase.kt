@@ -14,7 +14,7 @@ import yogesh.com.shaadiassignment.TypeConverter.*
 @TypeConverters(*arrayOf(CoordinatesConverter::class, DobConverter::class, IdConverter::class, LocationConverter::class,
         LoginTypeConverter::class, NameConverter::class, PictureConverter::class, RegisteredConverter::class,
         StreetConverter::class, TimeZoneConverter::class, PostCodeAnyConverter::class))
-abstract class CountryDatabase : RoomDatabase() {
+abstract class UsersDatabase : RoomDatabase() {
 
     abstract fun usersDao(): UsersDao
 }
