@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -21,19 +22,8 @@ class UserRecyclerViewAdapter(_context: Context, _itemClickListener: RecyclerIte
     var userList = ArrayList<Result>()
 
     fun setUserList(_userList: List<Result>) {
-//        if (userList.isEmpty()) {
         userList = _userList as ArrayList<Result>
         notifyDataSetChanged()
-//        } else {
-//            for (_newresult in _userList) {
-//                for ((index, result) in userList.withIndex()) {
-//                    if (_newresult.hashCode() == result.hashCode()) {
-//                        notifyItemChanged(index)
-//                        break
-//                    }
-//                }
-//            }
-//        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CountryViewHolder {
@@ -76,31 +66,19 @@ class UserRecyclerViewAdapter(_context: Context, _itemClickListener: RecyclerIte
                 holder.confirmationTv.visibility = View.VISIBLE
                 holder.confirmationTv.setTextColor(Color.parseColor("#FF5BAA4A"))
                 holder.confirmationTv.text = acceptedString
-                holder.acceptBtn.visibility = View.INVISIBLE
-                holder.acceptTv.visibility = View.INVISIBLE
-                holder.declineBtn.visibility = View.INVISIBLE
-                holder.declineTv.visibility = View.INVISIBLE
+                holder.constraintLayout.visibility = View.INVISIBLE
             } else if (user.extraInfo.equals(context.getString(R.string.declined), true)) {
                 holder.confirmationTv.visibility = View.VISIBLE
                 holder.confirmationTv.setTextColor(Color.parseColor("#FFC64545"))
                 holder.confirmationTv.text = declinedString
-                holder.acceptBtn.visibility = View.INVISIBLE
-                holder.acceptTv.visibility = View.INVISIBLE
-                holder.declineBtn.visibility = View.INVISIBLE
-                holder.declineTv.visibility = View.INVISIBLE
+                holder.constraintLayout.visibility = View.INVISIBLE
             } else {
                 holder.confirmationTv.visibility = View.GONE
-                holder.acceptBtn.visibility = View.VISIBLE
-                holder.acceptTv.visibility = View.VISIBLE
-                holder.declineBtn.visibility = View.VISIBLE
-                holder.declineTv.visibility = View.VISIBLE
+                holder.constraintLayout.visibility = View.VISIBLE
             }
         } else {
             holder.confirmationTv.visibility = View.GONE
-            holder.acceptBtn.visibility = View.VISIBLE
-            holder.acceptTv.visibility = View.VISIBLE
-            holder.declineBtn.visibility = View.VISIBLE
-            holder.declineTv.visibility = View.VISIBLE
+            holder.constraintLayout.visibility = View.VISIBLE
         }
     }
 
@@ -119,6 +97,7 @@ class UserRecyclerViewAdapter(_context: Context, _itemClickListener: RecyclerIte
         val declineTv: TextView = itemView.findViewById(R.id.textView_decline)
 
         val confirmationTv: TextView = itemView.findViewById(R.id.textView_confirmation)
+        val constraintLayout: ConstraintLayout = itemView.findViewById(R.id.accept_decline_btn_layout)
     }
 
 }
